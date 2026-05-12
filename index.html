@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -33,7 +33,6 @@
     cursor: crosshair;
   }
 
-  /* === Animated Gradient Background === */
   .bg-aurora {
     position: fixed; inset: 0; z-index: 0;
     background:
@@ -65,113 +64,56 @@
     }
   }
 
-  /* === Interactive Particle Canvas === */
-  #particleCanvas {
-    position: fixed; inset: 0; z-index: 1;
-    pointer-events: none;
-  }
+  #particleCanvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-  /* === Main Container === */
-  .app {
-    position: relative; z-index: 2;
-    width: 100%; max-width: 800px;
-    margin: 0 auto;
-    padding: 48px 24px 80px;
-  }
+  .app { position: relative; z-index: 2; width: 100%; max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
 
-  /* === Mode Switch === */
-  .switch-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
+  .switch-bar { display: flex; justify-content: center; margin-bottom: 40px; }
 
   .switch-track {
-    display: flex;
-    background: rgba(255,255,255,0.06);
-    border-radius: 50px;
-    padding: 4px;
-    border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(20px);
-    position: relative;
-    cursor: pointer;
+    display: flex; background: rgba(255,255,255,0.06); border-radius: 50px; padding: 4px;
+    border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); position: relative; cursor: pointer;
   }
 
   .switch-slider {
-    position: absolute;
-    top: 4px; left: 4px;
-    width: calc(50% - 4px);
-    height: calc(100% - 8px);
-    background: linear-gradient(135deg, var(--violet), var(--magenta));
-    border-radius: 50px;
-    transition: transform 0.5s var(--spring);
-    box-shadow: var(--glow-v);
-    z-index: 0;
+    position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px);
+    background: linear-gradient(135deg, var(--violet), var(--magenta)); border-radius: 50px;
+    transition: transform 0.5s var(--spring); box-shadow: var(--glow-v); z-index: 0;
   }
 
-  .switch-slider.right {
-    transform: translateX(100%);
-    box-shadow: var(--glow-c);
-  }
+  .switch-slider.right { transform: translateX(100%); box-shadow: var(--glow-c); }
 
   .switch-btn {
-    position: relative; z-index: 1;
-    padding: 12px 32px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border: none;
-    background: none;
-    color: var(--text-dim);
-    cursor: pointer;
-    border-radius: 50px;
-    transition: color 0.4s ease;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
+    position: relative; z-index: 1; padding: 12px 32px; font-size: 0.95rem; font-weight: 600;
+    border: none; background: none; color: var(--text-dim); cursor: pointer;
+    border-radius: 50px; transition: color 0.4s ease; letter-spacing: 0.03em; white-space: nowrap;
   }
 
   .switch-btn.active { color: #fff; }
 
-  /* === Panels === */
   .panel {
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    backdrop-filter: blur(30px);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
+    background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius);
+    backdrop-filter: blur(30px); padding: 48px 40px; position: relative; overflow: hidden;
     transition: opacity 0.5s ease, transform 0.5s var(--spring);
   }
 
   .panel.hidden { display: none; }
 
   .panel::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
     background: radial-gradient(circle at 30% 20%, rgba(124,58,237,0.08) 0%, transparent 50%);
     pointer-events: none;
   }
 
-  /* === Card Panel === */
   .card-panel .profile {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
+    display: flex; align-items: center; gap: 28px; margin-bottom: 36px;
+    flex-wrap: wrap; justify-content: center; text-align: center;
   }
 
   .avatar-ring {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    padding: 3px;
+    width: 100px; height: 100px; border-radius: 50%; padding: 3px;
     background: linear-gradient(135deg, var(--violet), var(--magenta), var(--cyan));
-    animation: ringPulse 3s ease-in-out infinite;
-    flex-shrink: 0;
+    animation: ringPulse 3s ease-in-out infinite; flex-shrink: 0;
   }
 
   @keyframes ringPulse {
@@ -180,121 +122,56 @@
   }
 
   .avatar-inner {
-    width: 100%; height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1a1030, #1a1028);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(236,72,153,0.6);
+    width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(135deg, #1a1030, #1a1028);
+    display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700;
+    color: #fff; text-shadow: 0 0 20px rgba(236,72,153,0.6);
   }
 
   .profile-info h1 {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2rem; font-weight: 700;
     background: linear-gradient(135deg, var(--violet), var(--magenta), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     margin-bottom: 6px;
   }
 
-  .profile-info .sub {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
+  .profile-info .sub { font-size: 0.9rem; color: var(--text-dim); letter-spacing: 0.05em; }
+  .profile-info .tagline { font-size: 0.85rem; color: var(--text-dim); margin-top: 8px; font-style: italic; }
 
-  .profile-info .tagline {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-top: 8px;
-    font-style: italic;
-  }
-
-  /* === Stats Row === */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 36px;
-  }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
 
   .stat-box {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 18px 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: default;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+    padding: 18px 12px; text-align: center; transition: all 0.3s ease; cursor: default;
   }
 
   .stat-box:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.12);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);
+    transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.3);
   }
 
   .stat-val {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.5rem; font-weight: 700;
     background: linear-gradient(135deg, var(--violet), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  .stat-lbl {
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    margin-top: 4px;
-    letter-spacing: 0.03em;
-  }
+  .stat-lbl { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; letter-spacing: 0.03em; }
 
-  /* === Links === */
-  .links-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
+  .links-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
   .link-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
+    display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+    color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500;
     transition: all 0.3s var(--spring);
   }
 
   .link-card:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: var(--violet);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 40px rgba(124,58,237,0.2);
+    background: rgba(255,255,255,0.07); border-color: var(--violet);
+    transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 40px rgba(124,58,237,0.2);
   }
 
-  .link-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
+  .link-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
   .li-gh { background: rgba(255,255,255,0.08); }
   .li-tw { background: rgba(6,182,212,0.15); }
   .li-blog { background: rgba(236,72,153,0.15); }
@@ -303,275 +180,104 @@
   .link-arrow { margin-left: auto; opacity: 0; transition: all 0.3s ease; }
   .link-card:hover .link-arrow { opacity: 1; color: var(--violet); }
 
-  /* === Log Panel === */
-  .log-panel .log-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+  .log-panel .log-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
 
   .log-top h2 {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.2rem; font-weight: 700;
     background: linear-gradient(135deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  .log-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .log-meta { display: flex; align-items: center; gap: 12px; }
 
-  .log-count-badge {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    background: rgba(255,255,255,0.05);
-    padding: 6px 14px;
-    border-radius: 50px;
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-
+  .log-count-badge { font-size: 0.78rem; color: var(--text-dim); background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.08); }
   .log-count-badge span { color: var(--cyan); font-weight: 700; }
 
   .add-btn {
-    padding: 10px 24px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    font-family: inherit;
-    border: 1px solid var(--violet);
-    background: rgba(124,58,237,0.15);
-    color: var(--violet);
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s var(--spring);
-    letter-spacing: 0.02em;
+    padding: 10px 24px; font-size: 0.82rem; font-weight: 600; font-family: inherit;
+    border: 1px solid var(--violet); background: rgba(124,58,237,0.15); color: var(--violet);
+    border-radius: 50px; cursor: pointer; transition: all 0.3s var(--spring); letter-spacing: 0.02em;
   }
 
-  .add-btn:hover {
-    background: var(--violet);
-    color: #fff;
-    box-shadow: var(--glow-v);
-    transform: scale(1.05);
-  }
+  .add-btn:hover { background: var(--violet); color: #fff; box-shadow: var(--glow-v); transform: scale(1.05); }
 
-  /* === Form === */
   .entry-form {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 18px;
-    padding: 28px;
-    margin-bottom: 28px;
-    animation: formIn 0.5s var(--spring);
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px;
+    padding: 28px; margin-bottom: 28px; animation: formIn 0.5s var(--spring);
   }
 
-  @keyframes formIn {
-    from { opacity: 0; transform: translateY(-12px) scale(0.96); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+  @keyframes formIn { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
   .entry-form.hidden { display: none; }
-
   .form-row { margin-bottom: 16px; }
 
-  .form-row label {
-    display: block;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    margin-bottom: 6px;
-    letter-spacing: 0.04em;
-    font-weight: 600;
+  .form-row label { display: block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px; letter-spacing: 0.04em; font-weight: 600; }
+
+  .form-row input, .form-row textarea, .form-row select {
+    width: 100%; padding: 12px 16px; font-size: 0.88rem; font-family: inherit;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+    color: var(--text); outline: none; transition: all 0.3s ease;
   }
 
-  .form-row input,
-  .form-row textarea,
-  .form-row select {
-    width: 100%;
-    padding: 12px 16px;
-    font-size: 0.88rem;
-    font-family: inherit;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    color: var(--text);
-    outline: none;
-    transition: all 0.3s ease;
-  }
-
-  .form-row input:focus,
-  .form-row textarea:focus,
-  .form-row select:focus {
-    border-color: var(--violet);
-    box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
-  }
-
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
   .form-row textarea { resize: vertical; min-height: 80px; }
   .form-row select { cursor: pointer; }
   .form-row select option { background: #1a1030; color: var(--text); }
 
-  .form-btns {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-  }
+  .form-btns { display: flex; gap: 10px; justify-content: flex-end; }
 
   .btn {
-    padding: 10px 24px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    font-family: inherit;
-    border-radius: 12px;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: all 0.3s var(--spring);
+    padding: 10px 24px; font-size: 0.82rem; font-weight: 600; font-family: inherit;
+    border-radius: 12px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s var(--spring);
   }
 
-  .btn-save {
-    background: linear-gradient(135deg, var(--violet), var(--magenta));
-    color: #fff;
-    border: none;
-  }
-
+  .btn-save { background: linear-gradient(135deg, var(--violet), var(--magenta)); color: #fff; border: none; }
   .btn-save:hover { box-shadow: var(--glow-v); transform: scale(1.05); }
-
-  .btn-cancel {
-    background: none;
-    color: var(--text-dim);
-  }
-
+  .btn-cancel { background: none; color: var(--text-dim); }
   .btn-cancel:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
 
-  /* === Log Entries === */
   .log-list { display: flex; flex-direction: column; gap: 14px; }
 
   .log-item {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 18px;
-    padding: 24px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 18px;
+    padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;
     animation: itemIn 0.5s var(--spring) both;
   }
 
-  @keyframes itemIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes itemIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-  .log-item:hover {
-    border-color: rgba(124,58,237,0.3);
-    background: rgba(255,255,255,0.04);
-    transform: translateX(4px);
-  }
+  .log-item:hover { border-color: rgba(124,58,237,0.3); background: rgba(255,255,255,0.04); transform: translateX(4px); }
 
-  .log-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 20%;
-    width: 3px; height: 60%;
-    border-radius: 0 3px 3px 0;
-    transition: all 0.3s ease;
-  }
-
+  .log-item::before { content: ''; position: absolute; left: 0; top: 20%; width: 3px; height: 60%; border-radius: 0 3px 3px 0; transition: all 0.3s ease; }
   .log-item.line-code::before { background: var(--violet); box-shadow: 0 0 10px var(--violet); }
   .log-item.line-tool::before { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
   .log-item.line-note::before { background: rgba(255,255,255,0.2); }
   .log-item.line-fix::before { background: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
 
-  .log-item .item-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
-
-  .item-date {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .item-tag {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 3px 10px;
-    border-radius: 8px;
-  }
-
+  .log-item .item-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .item-date { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+  .item-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 8px; }
   .t-code { background: rgba(124,58,237,0.2); color: #a78bfa; }
   .t-tool { background: rgba(6,182,212,0.2); color: #22d3ee; }
   .t-note { background: rgba(255,255,255,0.08); color: #a8a5b8; }
   .t-fix { background: rgba(236,72,153,0.2); color: #f472b6; }
+  .item-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .item-desc { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
 
-  .item-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-
-  .item-desc {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-
-  .item-del {
-    display: inline-block;
-    margin-top: 12px;
-    font-size: 0.68rem;
-    font-family: inherit;
-    color: rgba(255,255,255,0.2);
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    letter-spacing: 0.03em;
-  }
-
+  .item-del { display: inline-block; margin-top: 12px; font-size: 0.68rem; font-family: inherit; color: rgba(255,255,255,0.2); background: none; border: none; cursor: pointer; transition: color 0.2s ease; letter-spacing: 0.03em; }
   .item-del:hover { color: var(--magenta); }
 
-  .empty-note {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    font-style: italic;
-  }
-
+  .empty-note { text-align: center; padding: 60px 20px; color: var(--text-dim); font-size: 0.9rem; font-style: italic; }
   .empty-note .hl { color: var(--cyan); font-style: normal; font-weight: 600; }
 
-  /* === Footer === */
-  .footer-bar {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 28px;
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.04em;
-  }
+  .footer-bar { display: flex; justify-content: space-between; margin-top: 28px; font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; }
 
   .footer-bar .live-dot {
-    display: inline-block;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    margin-right: 6px;
-    animation: dotPulse 2s ease-in-out infinite;
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan); margin-right: 6px; animation: dotPulse 2s ease-in-out infinite;
   }
 
-  @keyframes dotPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
+  @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
   @media (max-width: 600px) {
     .app { padding: 32px 14px 60px; }
@@ -586,12 +292,10 @@
 <body>
 
 <div class="bg-aurora"></div>
-
 <canvas id="particleCanvas"></canvas>
 
 <div class="app">
 
-  <!-- Switch -->
   <div class="switch-bar">
     <div class="switch-track" id="switchTrack">
       <div class="switch-slider" id="switchSlider"></div>
@@ -600,12 +304,9 @@
     </div>
   </div>
 
-  <!-- Card Panel -->
   <div class="panel card-panel" id="cardPanel">
     <div class="profile">
-      <div class="avatar-ring">
-        <div class="avatar-inner">布</div>
-      </div>
+      <div class="avatar-ring"><div class="avatar-inner">布</div></div>
       <div class="profile-info">
         <h1>布下雨</h1>
         <div class="sub">uid@codex:~</div>
@@ -614,49 +315,20 @@
     </div>
 
     <div class="stats-row">
-      <div class="stat-box">
-        <div class="stat-val">在线</div>
-        <div class="stat-lbl">当前状态</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">开发者</div>
-        <div class="stat-lbl">角色定位</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">Codex</div>
-        <div class="stat-lbl">主力编辑器</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val">全栈</div>
-        <div class="stat-lbl">技术栈</div>
-      </div>
+      <div class="stat-box"><div class="stat-val">在线</div><div class="stat-lbl">当前状态</div></div>
+      <div class="stat-box"><div class="stat-val">开发者</div><div class="stat-lbl">角色定位</div></div>
+      <div class="stat-box"><div class="stat-val">Codex</div><div class="stat-lbl">主力编辑器</div></div>
+      <div class="stat-box"><div class="stat-val">全栈</div><div class="stat-lbl">技术栈</div></div>
     </div>
 
     <div class="links-grid">
-      <a href="#" class="link-card">
-        <div class="link-icon li-gh">⌘</div>
-        <span>GitHub</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link-card">
-        <div class="link-icon li-tw">◇</div>
-        <span>X / Twitter</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link-card">
-        <div class="link-icon li-blog">◈</div>
-        <span>博客</span>
-        <span class="link-arrow">→</span>
-      </a>
-      <a href="#" class="link-card">
-        <div class="link-icon li-mail">◎</div>
-        <span>联系我</span>
-        <span class="link-arrow">→</span>
-      </a>
+      <a href="#" class="link-card"><div class="link-icon li-gh">⌘</div><span>GitHub</span><span class="link-arrow">→</span></a>
+      <a href="#" class="link-card"><div class="link-icon li-tw">◇</div><span>X / Twitter</span><span class="link-arrow">→</span></a>
+      <a href="#" class="link-card"><div class="link-icon li-blog">◈</div><span>博客</span><span class="link-arrow">→</span></a>
+      <a href="#" class="link-card"><div class="link-icon li-mail">◎</div><span>联系我</span><span class="link-arrow">→</span></a>
     </div>
   </div>
 
-  <!-- Log Panel -->
   <div class="panel log-panel hidden" id="logPanel">
     <div class="log-top">
       <h2>✦ 学习日志</h2>
@@ -667,27 +339,10 @@
     </div>
 
     <div class="entry-form hidden" id="entryForm">
-      <div class="form-row">
-        <label>分类标签</label>
-        <select id="entryTag">
-          <option value="code">💜 代码技巧</option>
-          <option value="tool">💙 工具使用</option>
-          <option value="note">🤍 学习笔记</option>
-          <option value="fix">💗 排错记录</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <label>标题</label>
-        <input type="text" id="entryTitle" placeholder="学到了什么？">
-      </div>
-      <div class="form-row">
-        <label>内容</label>
-        <textarea id="entrySummary" placeholder="详细记录这次学习的内容……"></textarea>
-      </div>
-      <div class="form-btns">
-        <button class="btn btn-cancel" id="cancelBtn">取消</button>
-        <button class="btn btn-save" id="saveBtn">保存记录</button>
-      </div>
+      <div class="form-row"><label>分类标签</label><select id="entryTag"><option value="code">💜 代码技巧</option><option value="tool">💙 工具使用</option><option value="note">🤍 学习笔记</option><option value="fix">💗 排错记录</option></select></div>
+      <div class="form-row"><label>标题</label><input type="text" id="entryTitle" placeholder="学到了什么？"></div>
+      <div class="form-row"><label>内容</label><textarea id="entrySummary" placeholder="详细记录这次学习的内容……"></textarea></div>
+      <div class="form-btns"><button class="btn btn-cancel" id="cancelBtn">取消</button><button class="btn btn-save" id="saveBtn">保存记录</button></div>
     </div>
 
     <div class="log-list" id="logList"></div>
@@ -704,12 +359,12 @@
 (function() {
   'use strict';
 
-  // ==================== MOUSE PARTICLE SYSTEM ====================
+  // ==================== SPRING PARTICLE SYSTEM ====================
   var canvas = document.getElementById('particleCanvas');
   var ctx = canvas.getContext('2d');
   var particles = [];
   var mouse = { x: -1000, y: -1000 };
-  var PARTICLE_COUNT = 80;
+  var PARTICLE_COUNT = 70;
   var colors = ['124,58,237', '236,72,153', '6,182,212', '168,85,247', '244,114,182'];
 
   function resize() {
@@ -718,16 +373,21 @@
   }
 
   function createParticle() {
-    return {
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: 0,
-      vy: 0,
-      size: Math.random() * 2.5 + 1,
-      baseSize: Math.random() * 2.5 + 1,
+    var p = {
+      homeX: Math.random() * canvas.width,
+      homeY: Math.random() * canvas.height,
+      x: 0, y: 0,
+      vx: 0, vy: 0,
+      size: Math.random() * 2 + 0.8,
+      baseSize: 0,
       color: colors[Math.floor(Math.random() * colors.length)],
-      life: Math.random(),
+      springK: 0.015 + Math.random() * 0.025,
+      damping: 0.93 + Math.random() * 0.04,
     };
+    p.x = p.homeX;
+    p.y = p.homeY;
+    p.baseSize = p.size;
+    return p;
   }
 
   function initParticles() {
@@ -738,97 +398,120 @@
   }
 
   function updateParticles() {
+    var mouseActive = mouse.x > 0;
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
 
-      // Attraction to mouse
-      var dx = mouse.x - p.x;
-      var dy = mouse.y - p.y;
-      var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      // Spring force: pull back to home position (Hooke's law)
+      p.vx += (p.homeX - p.x) * p.springK;
+      p.vy += (p.homeY - p.y) * p.springK;
 
-      if (dist < 350) {
-        var force = (350 - dist) / 350;
-        var ax = (dx / dist) * force * 0.4;
-        var ay = (dy / dist) * force * 0.4;
-        p.vx += ax;
-        p.vy += ay;
-        p.size = p.baseSize + force * 3;
+      // Mouse disturbance: repel particles within range
+      if (mouseActive) {
+        var dx = p.x - mouse.x;
+        var dy = p.y - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+        if (dist < 180) {
+          var force = (180 - dist) / 180;
+          // Push away from mouse
+          p.vx += (dx / dist) * force * 0.6;
+          p.vy += (dy / dist) * force * 0.6;
+          // Grow slightly when disturbed
+          p.size += (p.baseSize + force * 2.5 - p.size) * 0.2;
+        } else {
+          p.size += (p.baseSize - p.size) * 0.1;
+        }
       } else {
         p.size += (p.baseSize - p.size) * 0.1;
       }
 
-      // Random drift when far from mouse
-      if (dist > 350) {
-        p.vx += (Math.random() - 0.5) * 0.15;
-        p.vy += (Math.random() - 0.5) * 0.15;
-      }
-
       // Damping
-      p.vx *= 0.94;
-      p.vy *= 0.94;
+      p.vx *= p.damping;
+      p.vy *= p.damping;
 
       // Move
       p.x += p.vx;
       p.y += p.vy;
-
-      // Wrap around edges
-      if (p.x < -20) p.x = canvas.width + 20;
-      if (p.x > canvas.width + 20) p.x = -20;
-      if (p.y < -20) p.y = canvas.height + 20;
-      if (p.y > canvas.height + 20) p.y = -20;
-
-      // Limit speed
-      var speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-      if (speed > 6) {
-        p.vx = (p.vx / speed) * 6;
-        p.vy = (p.vy / speed) * 6;
-      }
     }
   }
 
   function drawParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Draw spring tethers for displaced particles
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      var dx = p.x - p.homeX;
+      var dy = p.y - p.homeY;
+      var displace = Math.sqrt(dx * dx + dy * dy);
+
+      if (displace > 8) {
+        var alpha = Math.min(displace / 80, 0.25);
+        ctx.beginPath();
+        ctx.moveTo(p.homeX, p.homeY);
+        // Draw a curved spring line using quadratic bezier
+        var midX = (p.homeX + p.x) / 2;
+        var midY = (p.homeY + p.y) / 2;
+        var perpX = -(p.y - p.homeY) * 0.2;
+        var perpY = (p.x - p.homeX) * 0.2;
+        ctx.quadraticCurveTo(midX + perpX, midY + perpY, p.x, p.y);
+        ctx.strokeStyle = 'rgba(' + p.color + ',' + alpha + ')';
+        ctx.lineWidth = 0.4;
+        ctx.stroke();
+      }
+    }
+
     // Draw particles
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + p.color + ',' + (0.4 + p.size * 0.15) + ')';
+      ctx.fillStyle = 'rgba(' + p.color + ',' + (0.35 + p.size * 0.18) + ')';
       ctx.fill();
 
       // Glow
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + p.color + ',0.08)';
+      ctx.fillStyle = 'rgba(' + p.color + ',0.06)';
       ctx.fill();
+
+      // Home position dot (very subtle)
+      var dx = p.x - p.homeX;
+      var dy = p.y - p.homeY;
+      if (Math.sqrt(dx * dx + dy * dy) > 5) {
+        ctx.beginPath();
+        ctx.arc(p.homeX, p.homeY, 1, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + p.color + ',0.15)';
+        ctx.fill();
+      }
     }
 
-    // Draw connections between nearby particles
+    // Connection lines between nearby displaced particles
     for (var i = 0; i < particles.length; i++) {
       for (var j = i + 1; j < particles.length; j++) {
         var dx = particles[i].x - particles[j].x;
         var dy = particles[i].y - particles[j].y;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          var alpha = (1 - dist / 100) * 0.15;
+        if (dist < 90) {
+          var alpha = (1 - dist / 90) * 0.1;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = 'rgba(124,58,237,' + alpha + ')';
-          ctx.lineWidth = 0.5;
+          ctx.lineWidth = 0.4;
           ctx.stroke();
         }
       }
     }
 
-    // Draw cursor glow
+    // Cursor ripple
     if (mouse.x > 0 && mouse.y > 0) {
-      var grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 120);
-      grad.addColorStop(0, 'rgba(168,85,247,0.12)');
+      var grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+      grad.addColorStop(0, 'rgba(168,85,247,0.08)');
       grad.addColorStop(1, 'rgba(168,85,247,0)');
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 120, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
       ctx.fillStyle = grad;
       ctx.fill();
     }
@@ -840,7 +523,6 @@
     requestAnimationFrame(animateParticles);
   }
 
-  // Mouse events
   document.addEventListener('mousemove', function(e) {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
@@ -851,7 +533,6 @@
     mouse.y = -1000;
   });
 
-  // Touch events
   document.addEventListener('touchmove', function(e) {
     mouse.x = e.touches[0].clientX;
     mouse.y = e.touches[0].clientY;
@@ -872,50 +553,47 @@
   animateParticles();
 
   // ==================== APP LOGIC ====================
-  var STORAGE_KEY = 'codex_learning_log_v2';
+  var STORAGE_KEY = 'codex_learning_log_v3';
   var entries = [];
   var currentMode = 'card';
 
   var defaultEntries = [
-    { tag: 'code', date: '2026-05-12', title: '使用 frontend-design 技能构建个性化页面', summary: '学习了 Codex 的 8 个设计锚点：瑞士、工业、粗野主义、极光、混沌、复古未来、有机、低保真。最终用极光锚点做出这个暗色渐变 + 霓虹光晕 + 粒子跟随鼠标的科技感页面。' },
+    { tag: 'code', date: '2026-05-12', title: '使用 frontend-design 技能构建个性化页面', summary: '学习了 Codex 的 8 个设计锚点：瑞士、工业、粗野主义、极光、混沌、复古未来、有机、低保真。最终用极光锚点 + Canvas 弹簧粒子做出了这个页面。' },
     { tag: 'tool', date: '2026-05-12', title: 'Codex 技能系统的工作方式', summary: '技能是存储在 SKILL.md 中的本地指令集，通过渐进式加载机制工作：先读 SKILL.md → 按需加载 references/ → 执行 scripts/ → 复用 assets/。多个技能可以协同完成复杂任务。' },
-    { tag: 'note', date: '2026-05-12', title: 'Canvas 鼠标跟随粒子系统', summary: '使用 Canvas 2D 实现交互粒子：粒子受鼠标引力吸引（350px 范围内），远离时随机漂移。鼠标位置有径向渐变光晕，近距离粒子之间绘制半透明连线形成网状结构。' },
+    { tag: 'note', date: '2026-05-12', title: 'Canvas 弹簧粒子物理系统', summary: '每个粒子有固定 home 位置，Hooke 定律弹簧力拉回原位。鼠标靠近 180px 内产生排斥力推开粒子，远离后弹簧自动归位。粒子位移 > 8px 时绘制贝塞尔弹簧曲线。' },
     { tag: 'fix', date: '2026-05-12', title: 'PowerShell 命令传参踩坑记录', summary: 'shell 工具的 command 参数必须是字符串数组格式。写多行字符串用 here-doc 语法时注意引号转义。中文内容输出必须加 -Encoding UTF8，否则浏览器打开会乱码。' },
-    { tag: 'note', date: '2026-05-12', title: 'Aurora Maximalism 设计锚点', summary: '暗色饱和渐变背景（紫→粉→青）+ 大号字体 + 霓虹 text-shadow 光晕 + 弹性动画。配合玻璃态面板和粒子背景，营造科技感与艺术感并存的视觉体验。' },
+    { tag: 'note', date: '2026-05-12', title: '免费部署个人网站到 Netlify', summary: 'Netlify Drop 拖拽部署：打开 app.netlify.com/drop → 拖入 index.html → 3 秒上线。自带 HTTPS 和全球 CDN。后期可接 GitHub 自动部署、加自定义域名、Netlify Functions 后端。' },
+    { tag: 'code', date: '2026-05-12', title: '弹簧粒子系统 + Netlify API 自动部署', summary: '今天三项升级：粒子从跟随鼠标改为弹簧归位(Hooke定律+贝塞尔曲线可视化)，鼠标180px内推开、离开后弹回；部署到Netlify免费上线；接入Netlify API实现一条命令自动部署。' },
   ];
-
   function loadEntries() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      entries = raw ? JSON.parse(raw) : defaultEntries.slice();
-    } catch (e) {
-      entries = defaultEntries.slice();
-    }
+      if (raw) {
+        entries = JSON.parse(raw);
+        for (var di = 0; di < defaultEntries.length; di++) {
+          var found = false;
+          for (var ei = 0; ei < entries.length; ei++) {
+            if (entries[ei].title === defaultEntries[di].title) { found = true; break; }
+          }
+          if (!found) { entries.push(defaultEntries[di]); }
+        }
+      } else { entries = defaultEntries.slice(); }
+    } catch (e) { entries = defaultEntries.slice(); }
     saveEntries();
   }
 
-  function saveEntries() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch (e) {}
-  }
+  function saveEntries() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch (e) {} }
 
-  function esc(s) {
-    var d = document.createElement('div');
-    d.textContent = s;
-    return d.innerHTML;
-  }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
   function tagLabel(t) {
-    if (t === 'code') return '代码';
-    if (t === 'tool') return '工具';
-    if (t === 'note') return '笔记';
-    return '排错';
+    if (t === 'code') return '代码'; if (t === 'tool') return '工具'; if (t === 'note') return '笔记'; return '排错';
   }
 
   function renderLog() {
     var list = document.getElementById('logList');
     var count = document.getElementById('entryCount');
     if (!list || !count) return;
-
     count.textContent = entries.length;
 
     if (entries.length === 0) {
@@ -923,21 +601,15 @@
       return;
     }
 
-    var sorted = entries.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
-
+    var sorted = entries.slice().reverse();
     var h = '';
     for (var i = 0; i < sorted.length; i++) {
-      var e = sorted[i];
-      var idx = entries.indexOf(e);
+      var e = sorted[i]; var idx = entries.indexOf(e);
       h += '<div class="log-item line-' + e.tag + '" style="animation-delay:' + (i * 70) + 'ms">' +
-        '<div class="item-head">' +
-          '<span class="item-date">' + esc(e.date) + '</span>' +
-          '<span class="item-tag t-' + e.tag + '">' + tagLabel(e.tag) + '</span>' +
-        '</div>' +
+        '<div class="item-head"><span class="item-date">' + esc(e.date) + '</span><span class="item-tag t-' + e.tag + '">' + tagLabel(e.tag) + '</span></div>' +
         '<div class="item-title">' + esc(e.title) + '</div>' +
         '<div class="item-desc">' + esc(e.summary) + '</div>' +
-        '<button class="item-del" data-i="' + idx + '">删除</button>' +
-      '</div>';
+        '<button class="item-del" data-i="' + idx + '">删除</button></div>';
     }
     list.innerHTML = h;
 
@@ -946,11 +618,7 @@
       (function(el) {
         el.addEventListener('click', function() {
           var ii = parseInt(this.getAttribute('data-i'));
-          if (ii >= 0 && ii < entries.length) {
-            entries.splice(ii, 1);
-            saveEntries();
-            renderLog();
-          }
+          if (ii >= 0 && ii < entries.length) { entries.splice(ii, 1); saveEntries(); renderLog(); }
         });
       })(dels[d]);
     }
@@ -959,7 +627,6 @@
   function switchTo(mode) {
     if (mode === currentMode) return;
     currentMode = mode;
-
     var btnCard = document.getElementById('btnCard');
     var btnLog = document.getElementById('btnLog');
     var cardPanel = document.getElementById('cardPanel');
@@ -967,59 +634,36 @@
     var slider = document.getElementById('switchSlider');
 
     if (mode === 'log') {
-      btnCard.classList.remove('active');
-      btnLog.classList.add('active');
-      slider.classList.add('right');
-      cardPanel.classList.add('hidden');
-      logPanel.classList.remove('hidden');
+      btnCard.classList.remove('active'); btnLog.classList.add('active');
+      slider.classList.add('right'); cardPanel.classList.add('hidden'); logPanel.classList.remove('hidden');
     } else {
-      btnLog.classList.remove('active');
-      btnCard.classList.add('active');
-      slider.classList.remove('right');
-      logPanel.classList.add('hidden');
-      cardPanel.classList.remove('hidden');
+      btnLog.classList.remove('active'); btnCard.classList.add('active');
+      slider.classList.remove('right'); logPanel.classList.add('hidden'); cardPanel.classList.remove('hidden');
     }
   }
 
   document.getElementById('btnCard').addEventListener('click', function() { switchTo('card'); });
   document.getElementById('btnLog').addEventListener('click', function() { switchTo('log'); });
 
-  document.getElementById('addBtn').addEventListener('click', function() {
-    document.getElementById('entryForm').classList.remove('hidden');
-  });
-
-  document.getElementById('cancelBtn').addEventListener('click', function() {
-    document.getElementById('entryForm').classList.add('hidden');
-  });
+  document.getElementById('addBtn').addEventListener('click', function() { document.getElementById('entryForm').classList.remove('hidden'); });
+  document.getElementById('cancelBtn').addEventListener('click', function() { document.getElementById('entryForm').classList.add('hidden'); });
 
   document.getElementById('saveBtn').addEventListener('click', function() {
     var tag = document.getElementById('entryTag').value;
     var title = document.getElementById('entryTitle').value.trim();
     var summary = document.getElementById('entrySummary').value.trim();
     if (!title || !summary) return;
-
-    var today = new Date().toISOString().split('T')[0];
-    entries.push({ tag: tag, date: today, title: title, summary: summary });
-    saveEntries();
-    renderLog();
-
+    entries.push({ tag: tag, date: new Date().toISOString().split('T')[0], title: title, summary: summary });
+    saveEntries(); renderLog();
     document.getElementById('entryTitle').value = '';
     document.getElementById('entrySummary').value = '';
     document.getElementById('entryForm').classList.add('hidden');
   });
 
-  function tick() {
-    var el = document.getElementById('clock');
-    if (!el) return;
-    var n = new Date();
-    el.textContent = n.toLocaleTimeString('zh-CN', { hour12: false }) + ' CST';
-  }
-  tick();
-  setInterval(tick, 1000);
+  function tick() { var el = document.getElementById('clock'); if (!el) return; el.textContent = new Date().toLocaleTimeString('zh-CN', { hour12: false }) + ' CST'; }
+  tick(); setInterval(tick, 1000);
 
-  loadEntries();
-  renderLog();
-
+  loadEntries(); renderLog();
 })();
 </script>
 
