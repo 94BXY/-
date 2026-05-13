@@ -308,15 +308,15 @@ window.addEventListener('resize', function() {
   ip();
 });
 
-var LK = 'cll_v6', PK = 'cpl_v3', MK = 'cml_v3';
+var LK = 'cll_v7', PK = 'cpl_v3', MK = 'cml_v3';
 var logs = [], projs = [], msgs = [];
 var defLogs = [
-  {tag:'code',date:'2026-05-13',title:'弹簧粒子系统重构',summary:'修复画布ID、动画循环、全页粒子scrollHeight覆盖、requestAnimationFrame驱动。'},
-  {tag:'fix',date:'2026-05-12',title:'PowerShell编码问题',summary:'中文输出必须使用UTF-8编码，否则全部乱码。'},
-  {tag:'note',date:'2026-05-12',title:'免费Netlify部署',summary:'Netlify Drop拖拽上传，3秒上线，无需命令行。'},
-  {tag:'code',date:'2026-05-12',title:'弹簧粒子+API部署',summary:'Hooke定律弹簧物理+贝塞尔曲线连线。Netlify API自动部署。'},
-  {tag:'tool',date:'2026-05-12',title:'Codex技能系统',summary:'技能存储在SKILL.md中，支持渐进式加载，按需读取。'},
   {tag:'note',date:'2026-05-12',title:'前端设计技能',summary:'学习了Codex frontend-design技能的8个设计锚点。'},
+  {tag:'tool',date:'2026-05-12',title:'Codex技能系统',summary:'技能存储在SKILL.md中，支持渐进式加载，按需读取。'},
+  {tag:'code',date:'2026-05-12',title:'弹簧粒子+API部署',summary:'Hooke定律弹簧物理+贝塞尔曲线连线。Netlify API自动部署。'},
+  {tag:'note',date:'2026-05-12',title:'免费Netlify部署',summary:'Netlify Drop拖拽上传，3秒上线，无需命令行。'},
+  {tag:'fix',date:'2026-05-12',title:'PowerShell编码问题',summary:'中文输出必须使用UTF-8编码，否则全部乱码。'},
+  {tag:'code',date:'2026-05-13',title:'弹簧粒子系统重构',summary:'修复画布ID、动画循环、全页粒子scrollHeight覆盖、requestAnimationFrame驱动。'},
 ];
 
 function ld(k, d) { try { var r = localStorage.getItem(k); return r ? JSON.parse(r) : d.slice(); } catch(e) { return d.slice(); } }
@@ -333,12 +333,12 @@ function mg(arr, defs) {
 
 function rp() {
   var g = document.getElementById('pg'); if (!g) return;
-  if (!projs.length) { g.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">??????????</div>'; return; }
+  if (!projs.length) { g.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">暂无项目</div>'; return; }
   var s = projs.slice().reverse(), h = '';
   for (var i = 0; i < s.length; i++) {
     var p = s[i], idx = projs.indexOf(p);
     var tags = (p.tags || '').split(',').filter(function(t){return t.trim()}).map(function(t){return '<span class="ptt">' + es(t.trim()) + '</span>'}).join('');
-    h += '<div class="pr rv" data-i="' + idx + '"><div class="pn">' + es(p.name) + '</div><div class="pd2">' + es(p.desc) + '</div><div class="pt">' + tags + '</div>' + (p.link ? '<a class="pl" href="' + es(p.link) + '" target="_blank">??</a>' : '') + '<button class="xd">??</button></div>';
+    h += '<div class="pr rv" data-i="' + idx + '"><div class="pn">' + es(p.name) + '</div><div class="pd2">' + es(p.desc) + '</div><div class="pt">' + tags + '</div>' + (p.link ? '<a class="pl" href="' + es(p.link) + '" target="_blank">??</a>' : '') + '<button class="xd">删除</button></div>';
   }
   g.innerHTML = h;
   var ds = g.querySelectorAll('.xd');
@@ -365,13 +365,13 @@ function rp() {
 
 function rl() {
   var l = document.getElementById('ll'); if (!l) return;
-  if (!logs.length) { l.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">????</div>'; return; }
+  if (!logs.length) { l.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">暂无记录</div>'; return; }
   var s = logs.slice().reverse(), h = '';
   for (var i = 0; i < s.length; i++) {
     var e = s[i], idx = logs.indexOf(e);
     var tc = 'l' + e.tag.charAt(0);
-    var tl = e.tag === 'code' ? 'CODE' : e.tag === 'tool' ? 'TOOL' : e.tag === 'note' ? 'NOTE' : 'FIX';
-    h += '<div class="li rv"><div class="lh"><span class="ldt">' + es(e.date) + '</span><span class="ltg ' + tc + '">' + tl + '</span></div><div class="ltl">' + es(e.title) + '</div><div class="ldc">' + es(e.summary) + '</div><button class="xd" data-i="' + idx + '">??</button></div>';
+    var tl = e.tag === 'code' ? '代码' : e.tag === 'tool' ? '工具' : e.tag === 'note' ? '笔记' : '修复';
+    h += '<div class="li rv"><div class="lh"><span class="ldt">' + es(e.date) + '</span><span class="ltg ' + tc + '">' + tl + '</span></div><div class="ltl">' + es(e.title) + '</div><div class="ldc">' + es(e.summary) + '</div><button class="xd" data-i="' + idx + '">删除</button></div>';
   }
   l.innerHTML = h;
   var ds = l.querySelectorAll('.xd');
@@ -388,11 +388,11 @@ function rl() {
 
 function rm() {
   var l = document.getElementById('ml'); if (!l) return;
-  if (!msgs.length) { l.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">????</div>'; return; }
+  if (!msgs.length) { l.innerHTML = '<div style="padding:60px;text-align:center;color:var(--d);font-size:0.85rem">暂无留言</div>'; return; }
   var s = msgs.slice().reverse(), h = '';
   for (var i = 0; i < s.length; i++) {
     var m = s[i], idx = msgs.indexOf(m);
-    h += '<div class="mi rv"><div class="mh"><span class="mau">' + es(m.author || '??') + '</span><span class="mtm">' + es(m.date) + ' ' + es(m.time || '') + '</span></div><div class="mbd">' + es(m.body) + '</div><button class="xd" data-i="' + idx + '">??</button></div>';
+    h += '<div class="mi rv"><div class="mh"><span class="mau">' + es(m.author || '??') + '</span><span class="mtm">' + es(m.date) + ' ' + es(m.time || '') + '</span></div><div class="mbd">' + es(m.body) + '</div><button class="xd" data-i="' + idx + '">删除</button></div>';
   }
   l.innerHTML = h;
   var ds = l.querySelectorAll('.xd');
