@@ -11,7 +11,7 @@
 body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);overflow:hidden;height:100vh;cursor:default;-webkit-font-smoothing:antialiased}
 
 .sky{position:fixed;inset:0;background:linear-gradient(180deg,#0a0a1e 0%,#1a1a3e 40%,#2a1a2e 70%,#1a0a0a 100%)}
-.sky-bg{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat;opacity:0.15;pointer-events:none;z-index:0}
+.sky-bg{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat;opacity:0.06;pointer-events:none;z-index:0}
 
 .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--dl)}
 @keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}
@@ -21,9 +21,10 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 .ground{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(180deg,#1a2a1a,#0d1a0d);border-radius:50% 50% 0 0 / 20px 20px 0 0}
 .ground::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(244,164,96,0.06),transparent)}
 
-.house{position:absolute;bottom:18%;left:50%;transform:translateX(-50%);width:260px;height:200px}
+.house{position:absolute;bottom:18%;left:58%;transform:translateX(-50%);width:260px;height:200px}
 
 .house-body{position:absolute;bottom:0;left:30px;width:200px;height:140px;background:linear-gradient(180deg,#5c4332,#3d2918);border-radius:6px 6px 0 0;box-shadow:0 4px 30px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03)}
+.house-body::after{content:"";position:absolute;bottom:0;left:0;right:0;height:30px;background:linear-gradient(0deg,rgba(10,10,20,0.5),transparent);pointer-events:none}
 .house-body::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.04)}
 
 .house-roof{position:absolute;bottom:140px;left:10px;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:65px solid #4d3020;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.4))}
@@ -108,12 +109,7 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 <div id="meteors"></div>
 
 
-<div class="trees">
-  <div class="tree" style="left:5%;--tw:30px;--th:80px"></div>
-  <div class="tree" style="left:12%;--tw:25px;--th:65px"></div>
-  <div class="tree" style="left:78%;--tw:35px;--th:90px"></div>
-  <div class="tree" style="left:88%;--tw:28px;--th:75px"></div>
-</div>
+/div>
 
 
 <div class="house">
