@@ -10,8 +10,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);overflow:hidden;height:100vh;cursor:default;-webkit-font-smoothing:antialiased}
 
-.sky{position:fixed;inset:0;background:linear-gradient(180deg,#0a0a1e 0%,#1a1a3e 40%,#2a1a2e 70%,#1a0a0a 100%)}
-.sky-bg{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat;opacity:1;pointer-events:none;z-index:-1}
+.sky{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat,linear-gradient(180deg,rgba(10,10,30,0.55) 0%,rgba(26,26,62,0.45) 40%,rgba(42,26,46,0.4) 70%,rgba(26,10,10,0.5) 100%)}
 
 .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--dl)}
 @keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}
@@ -105,7 +104,6 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 </div>
 
 <div class="sky" id="sky"></div>
-<div class="sky-bg"></div>
 <div id="meteors"></div>
 
 
