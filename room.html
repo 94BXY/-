@@ -101,8 +101,10 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 
 .house{cursor:pointer;transition:filter 0.6s ease}
 .house:hover{filter:brightness(1.3) drop-shadow(0 0 30px rgba(255,180,80,0.5))}
-.house-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:flex-end;padding-right:258px;padding-bottom:calc(24% + 260px);pointer-events:none;opacity:0;transition:opacity 0.5s ease}
+.house-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:flex-end;padding-right:201px;padding-bottom:calc(24% + 71px);pointer-events:none;opacity:0;transition:opacity 0.5s ease}
 .house:hover ~ .house-overlay,.house-overlay.show{opacity:1}
+.bg-dim{position:fixed;inset:0;z-index:140;background:rgba(0,0,0,0.5);pointer-events:none;opacity:0;transition:opacity 0.6s ease}
+.bg-dim.show{opacity:1}
 .house-overlay .enter-text{font-size:1.5rem;font-weight:600;color:#fff;letter-spacing:0.12em;text-shadow:0 0 40px rgba(255,180,80,0.8),0 0 80px rgba(255,140,40,0.4);animation:enterPulse 2s ease-in-out infinite}
 @keyframes enterPulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.08);opacity:1}}
 </style>
@@ -135,6 +137,7 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 </div>
 
 <div class="house-overlay"><span class="enter-text">进入屋内</span></div>
+<div class="bg-dim"></div>
 
 <div class="overlay"></div>
 
@@ -194,8 +197,8 @@ audio.volume=0.5;pvf.style.width="50%";
 var houseEl = document.querySelector('.house');
 var overlayEl = document.querySelector('.house-overlay');
 if(houseEl && overlayEl){
-  houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show')});
-  houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show')});
+  houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show');var d=document.querySelector('.bg-dim');if(d)d.classList.add('show')});
+  houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show');var d=document.querySelector('.bg-dim');if(d)d.classList.remove('show')});
 }
 window.startAll = function() {
     document.getElementById('startHint').classList.add('hidden');
