@@ -153,6 +153,23 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 
 
 
+
+
+<div class="player" id="player">
+  <div class="p-cover">🔥</div>
+  <div class="p-info">
+    <div class="p-title">Magnolia</div>
+    <div class="p-artist">氛围感の小曲</div>
+  </div>
+  <button class="p-btn" id="pPlay" title="播放/暂停">▶</button>
+  <button class="p-btn" id="pMute" title="Mute" style="font-size:0.65rem;font-weight:700">M</button>
+  <div class="p-bar-wrap" id="pBar"><div class="p-bar-fill" id="pBarFill"></div></div>
+  <span class="p-time" id="pTime">0:00</span>
+  <div class="p-vol" id="pVol"><div class="p-vol-fill" id="pVolFill"></div></div>
+</div>
+<audio id="audio" loop preload="auto" src="magnolia.aac?v=2"></audio>
+<div style="position:fixed;bottom:80px;right:16px;z-index:300;font-size:0.5rem;color:rgba(255,255,255,0.15);pointer-events:none">v2.1</div>
+
 <script>
 (function(){
   var sky = document.getElementById('sky');
@@ -203,20 +220,5 @@ window.startAll = function() {
   };
 })();
 </script>
-
-<div class="player" id="player">
-  <div class="p-cover">🔥</div>
-  <div class="p-info">
-    <div class="p-title">Magnolia</div>
-    <div class="p-artist">氛围感の小曲</div>
-  </div>
-  <button class="p-btn" id="pPlay" title="播放/暂停">▶</button>
-  <button class="p-btn" id="pMute" title="Mute" style="font-size:0.65rem;font-weight:700">M</button>
-  <div class="p-bar-wrap" id="pBar"><div class="p-bar-fill" id="pBarFill"></div></div>
-  <span class="p-time" id="pTime">0:00</span>
-  <div class="p-vol" id="pVol"><div class="p-vol-fill" id="pVolFill"></div></div>
-</div>
-<audio id="audio" loop preload="auto" src="magnolia.aac?v=2"></audio>
-<div style="position:fixed;bottom:80px;right:16px;z-index:300;font-size:0.5rem;color:rgba(255,255,255,0.15);pointer-events:none">v2.1</div>
 </body>
 </html>
