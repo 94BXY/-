@@ -213,6 +213,13 @@ pb.addEventListener("click",function(e){var r=pb.getBoundingClientRect(),pct=(e.
 pv.addEventListener("click",function(e){var r=pv.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.volume=Math.max(0,Math.min(1,pct));pvf.style.width=(pct*100)+"%"});
 audio.volume=0.5;pvf.style.width="50%";
 }
+var houseEl=document.querySelector('.house');
+var overlayEl=document.querySelector('.house-overlay');
+var dimEl=document.querySelector('.bg-dim');
+if(houseEl&&overlayEl){
+houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show');if(dimEl)dimEl.classList.add('show')});
+houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show');if(dimEl)dimEl.classList.remove('show')});
+}
 window.startAll = function() {
     document.getElementById('startHint').classList.add('hidden');
     var a = document.getElementById('audio');
