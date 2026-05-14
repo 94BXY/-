@@ -20,7 +20,7 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 .ground{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(180deg,#1a2a1a,#0d1a0d);border-radius:50% 50% 0 0 / 20px 20px 0 0}
 .ground::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(244,164,96,0.06),transparent)}
 
-.house{position:absolute;bottom:24%;right:100px;width:260px;height:200px}
+.house{position:absolute;bottom:24%;right:138px;width:260px;height:200px}
 
 .house-body{position:absolute;bottom:0;left:30px;width:240px;height:170px;background:linear-gradient(180deg,#5c4332,#3d2918);border-radius:6px 6px 0 0;box-shadow:0 4px 30px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03)}
 .house-body::after{content:"";position:absolute;bottom:0;left:0;right:0;height:30px;background:linear-gradient(0deg,rgba(10,10,20,0.5),transparent);pointer-events:none}
@@ -95,6 +95,13 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 /* Meteors */
 .meteor{position:absolute;width:3px;height:120px;background:linear-gradient(0deg,#fff 0%,rgba(220,240,255,0.8) 10%,rgba(180,210,255,0.3) 30%,rgba(255,255,255,0) 100%);border-radius:50%;animation:shoot var(--mt) linear infinite;animation-delay:var(--md);opacity:0;pointer-events:none;box-shadow:0 0 8px rgba(200,220,255,0.6),0 0 20px rgba(180,200,255,0.15)}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(45deg)}3%{opacity:1}12%{opacity:0;transform:translate(-400px,300px) rotate(45deg)}100%{opacity:0;transform:translate(-400px,300px) rotate(45deg)}}
+
+.house{cursor:pointer;transition:filter 0.6s ease}
+.house:hover{filter:brightness(1.3) drop-shadow(0 0 30px rgba(255,180,80,0.5))}
+.house-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity 0.5s ease}
+.house:hover ~ .house-overlay,.house-overlay.show{opacity:1}
+.house-overlay .enter-text{font-size:1.5rem;font-weight:600;color:#fff;letter-spacing:0.12em;text-shadow:0 0 40px rgba(255,180,80,0.8),0 0 80px rgba(255,140,40,0.4);animation:enterPulse 2s ease-in-out infinite}
+@keyframes enterPulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.08);opacity:1}}
 </style>
 </head>
 <body>
@@ -111,7 +118,6 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 
 
 <div class="house">
-    <div class="house-tip">进入屋内</div>
   <div class="house-roof"></div>
   <div class="chimney"></div>
   <div class="smoke" style="--sd:0s"></div>
@@ -123,6 +129,8 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
     <div class="house-door"></div>
   </div>
 </div>
+
+<div class="house-overlay"><span class="enter-text">进入屋内</span></div>
 
 <div class="overlay"></div>
 
@@ -178,6 +186,12 @@ audio.addEventListener("timeupdate",function(){var p=audio.duration?(audio.curre
 pb.addEventListener("click",function(e){var r=pb.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.currentTime=pct*audio.duration});
 pv.addEventListener("click",function(e){var r=pv.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.volume=Math.max(0,Math.min(1,pct));pvf.style.width=(pct*100)+"%"});
 audio.volume=0.5;pvf.style.width="50%";
+}
+var houseEl = document.querySelector('.house');
+var overlayEl = document.querySelector('.house-overlay');
+if(houseEl && overlayEl){
+  houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show')});
+  houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show')});
 }
 window.startAll = function() {
     document.getElementById('startHint').classList.add('hidden');
