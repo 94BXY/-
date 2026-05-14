@@ -86,7 +86,7 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 @media(max-width:600px){.player{padding:8px 12px;gap:10px}.player .p-bar-wrap{display:none}.player .p-vol{display:none}}
 
 /* Meteors */
-.meteor{position:absolute;width:2px;height:80px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0));border-radius:1px;animation:shoot var(--mt) linear infinite;animation-delay:var(--md);opacity:0;pointer-events:none}
+.meteor{position:absolute;width:2px;height:80px;background:linear-gradient(0deg,rgba(255,255,255,0.8),rgba(255,255,255,0));border-radius:1px;animation:shoot var(--mt) linear infinite;animation-delay:var(--md);opacity:0;pointer-events:none}
 .meteor::after{content:"";position:absolute;top:0;left:0;width:2px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 6px #fff,0 0 12px rgba(180,200,255,0.6)}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(53deg)}3%{opacity:1}12%{opacity:0;transform:translate(-400px,300px) rotate(53deg)}100%{opacity:0;transform:translate(-400px,300px) rotate(53deg)}}
 </style>
