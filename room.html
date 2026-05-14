@@ -84,6 +84,11 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 .player .p-vol{width:60px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;cursor:pointer;flex-shrink:0}
 .player .p-vol-fill{height:100%;background:rgba(255,255,255,0.4);border-radius:2px;width:70%;pointer-events:none}
 @media(max-width:600px){.player{padding:8px 12px;gap:10px}.player .p-bar-wrap{display:none}.player .p-vol{display:none}}
+
+/* Meteors */
+.meteor{position:absolute;width:2px;height:80px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0));border-radius:1px;animation:shoot var(--mt) linear infinite;animation-delay:var(--md);opacity:0;pointer-events:none}
+.meteor::after{content:"";position:absolute;top:0;left:0;width:2px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 6px #fff,0 0 12px rgba(180,200,255,0.6)}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-35deg)}5%{opacity:1}15%{opacity:0;transform:translate(-400px,300px) rotate(-35deg)}100%{opacity:0;transform:translate(-400px,300px) rotate(-35deg)}}
 </style>
 </head>
 <body>
@@ -93,6 +98,8 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 </div>
 
 <div class="sky" id="sky"></div>
+<div id="meteors"></div>
+
 <div class="moon"></div>
 
 <div class="trees">
@@ -139,6 +146,15 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
     s.className = 'star';
     s.style.cssText = 'left:' + (Math.random()*95).toFixed(1) + '%;top:' + (Math.random()*70).toFixed(1) + '%;width:' + (Math.random()*2+0.8).toFixed(1) + 'px;height:' + (Math.random()*2+0.8).toFixed(1) + 'px;--d:' + (Math.random()*3+2).toFixed(1) + 's;--dl:' + (Math.random()*3).toFixed(1) + 's';
     sky.appendChild(s);
+  }
+
+  // Meteors
+  var mc = document.getElementById('meteors');
+  for (var m = 0; m < 5; m++) {
+    var met = document.createElement('div');
+    met.className = 'meteor';
+    met.style.cssText = 'left:' + (5 + Math.random()*80).toFixed(1) + '%;top:' + (2 + Math.random()*30).toFixed(1) + '%;--mt:' + (4 + Math.random()*6).toFixed(1) + 's;--md:' + (Math.random()*8).toFixed(1) + 's';
+    mc.appendChild(met);
   }
 
   // Embers
