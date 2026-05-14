@@ -92,6 +92,7 @@ footer .fi2{font-size:0.65rem;color:rgba(255,255,255,0.15)}
 </head>
 <body>
 <div class="bg"></div>
+<audio id="bgm" loop preload="auto" src="file:///D:/素材-达芬奇/音乐/"BGM神曲"Infinity 无限 - Jaymes Young 百万级装备试听【Hi-Res】.mp4"></audio>
 <canvas id="pc"></canvas>
 <main>
 
@@ -100,6 +101,12 @@ footer .fi2{font-size:0.65rem;color:rgba(255,255,255,0.15)}
   <p class="tag">Bound by nothing, the X bends to You.</p>
   <p class="tag" style="font-size:0.72rem;margin-top:10px;opacity:0.45;letter-spacing:0.08em">无所束缚，未知屈从于你。</p>
   <div class="sh">↓ 向下滚动</div>
+</div>
+
+<div style="text-align:center;position:relative;z-index:2;margin-top:-30px;padding-bottom:20px">
+  <a href="room.html" style="display:inline-flex;align-items:center;gap:10px;padding:12px 32px;font-size:0.78rem;font-weight:600;font-family:inherit;text-decoration:none;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.4s;letter-spacing:0.04em;background:rgba(255,255,255,0.02)">
+    <span style="font-size:1rem">✨</span> 进入小屋
+  </a>
 </div>
 
 <section id="projects">
@@ -462,6 +469,8 @@ document.getElementById('smb').addEventListener('click', function() {
 function tk() { var e = document.getElementById('ck'); if (e) e.textContent = new Date().toLocaleTimeString('zh-CN', { hour12: false }) + ' CST'; }
 tk(); setInterval(tk, 1000);
 
+var bgm = document.getElementById("bgm");
+if(bgm){bgm.volume=0.4;bgm.play().catch(function(){document.addEventListener("click",function x(){bgm.play();document.removeEventListener("click",x)}, {once:!0})});}
 rs(); ip();
 logs = mg(ld(LK, defLogs), defLogs); sv(LK, logs);
 projs = ld(PK, []);
