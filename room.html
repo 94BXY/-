@@ -11,7 +11,7 @@
 body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);overflow:hidden;height:100vh;cursor:default;-webkit-font-smoothing:antialiased}
 
 .sky{position:fixed;inset:0;background:linear-gradient(180deg,#0a0a1e 0%,#1a1a3e 40%,#2a1a2e 70%,#1a0a0a 100%)}
-.sky-bg{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat;opacity:0.06;pointer-events:none;z-index:0}
+.sky-bg{position:fixed;inset:0;background:url("bg-room.png") center/cover no-repeat;opacity:1;pointer-events:none;z-index:-1}
 
 .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--dl)}
 @keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:1}}
