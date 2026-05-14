@@ -79,7 +79,8 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 .start-hint .hint-text{font-size:1.2rem;color:var(--warm);letter-spacing:0.08em;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
 
-.player{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,20,0.95);border-top:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(20px);padding:12px 24px;display:flex;align-items:center;gap:14px}
+.player{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,20,0.9);border-top:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(20px);padding:10px 24px;display:flex;align-items:center;gap:16px;}
+
 .player .p-cover{width:44px;height:44px;border-radius:6px;background:linear-gradient(135deg,#f4a460,#e25822);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
 .player .p-info{flex:1;min-width:0}
 .player .p-title{font-size:0.8rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -100,10 +101,8 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 
 .house{cursor:pointer;transition:filter 0.6s ease}
 .house:hover{filter:brightness(1.3) drop-shadow(0 0 30px rgba(255,180,80,0.5))}
-.house-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:flex-end;padding-right:201px;padding-bottom:calc(24% + 71px);pointer-events:none;opacity:0;transition:opacity 0.5s ease}
+.house-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:flex-end;padding-right:258px;padding-bottom:calc(24% + 260px);pointer-events:none;opacity:0;transition:opacity 0.5s ease}
 .house:hover ~ .house-overlay,.house-overlay.show{opacity:1}
-.bg-dim{position:fixed;inset:0;z-index:140;background:rgba(0,0,0,0.5);pointer-events:none;opacity:0;transition:opacity 0.6s ease}
-.bg-dim.show{opacity:1}
 .house-overlay .enter-text{font-size:1.5rem;font-weight:600;color:#fff;letter-spacing:0.12em;text-shadow:0 0 40px rgba(255,180,80,0.8),0 0 80px rgba(255,140,40,0.4);animation:enterPulse 2s ease-in-out infinite}
 @keyframes enterPulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.08);opacity:1}}
 </style>
@@ -136,7 +135,6 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
 </div>
 
 <div class="house-overlay"><span class="enter-text">进入屋内</span></div>
-<div class="bg-dim"></div>
 
 <div class="overlay"></div>
 
@@ -182,16 +180,44 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
   
 // Player
 var audio=document.getElementById("audio"),pl=document.getElementById("player"),
-pp=document.getElementById("pPlay"),pm=document.getElementById("pMute"),
-pb=document.getElementById("pBar"),pbf=document.getElementById("pBarFill"),
+pp=document.getElementById("pPlay"),pb=document.getElementById("pBar"),pbf=document.getElementById("pBarFill"),
 pt=document.getElementById("pTime"),pv=document.getElementById("pVol"),pvf=document.getElementById("pVolFill");
-if(audio){audio.volume=0.5;
-pp.addEventListener("click",function(){if(audio.paused){audio.play()}else{audio.pause()}});
-audio.addEventListener("play",function(){pp.textContent="X"});
-audio.addEventListener("pause",function(){pp.textContent=">"});
-if(pm){pm.addEventListener("click",function(){audio.muted=!audio.muted;pm.style.opacity=audio.muted?"0.3":"1"})};
+if(audio){audio.volume=0.5;pl.classList.add("on");
+pp.addEventListener("click",function(){if(audio.paused){audio.play();pp.textContent="⏸"}else{audio.pause();pp.textContent="▶"}});var pm=document.getElementById("pMute");if(pm){pm.addEventListener("click",function(){audio.muted=!audio.muted;pm.style.opacity=audio.muted?"0.3":"1"})};
+audio.addEventListener("play",function(){pp.textContent="⏸"});
+audio.addEventListener("pause",function(){pp.textContent="▶"});
 audio.addEventListener("timeupdate",function(){var p=audio.duration?(audio.currentTime/audio.duration*100):0;pbf.style.width=p+"%";var m=Math.floor(audio.currentTime/60),s=Math.floor(audio.currentTime%60);pt.textContent=m+":"+(s<10?"0":"")+s});
 pb.addEventListener("click",function(e){var r=pb.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.currentTime=pct*audio.duration});
 pv.addEventListener("click",function(e){var r=pv.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.volume=Math.max(0,Math.min(1,pct));pvf.style.width=(pct*100)+"%"});
 audio.volume=0.5;pvf.style.width="50%";
-}>
+}
+var houseEl = document.querySelector('.house');
+var overlayEl = document.querySelector('.house-overlay');
+if(houseEl && overlayEl){
+  houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show')});
+  houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show')});
+}
+window.startAll = function() {
+    document.getElementById('startHint').classList.add('hidden');
+    var a = document.getElementById('audio');
+    a.play().then(function(){pp.textContent='⏸'}).catch(function(){});
+  };
+})();
+</script>
+
+<div class="player" id="player">
+  <div class="p-cover">🔥</div>
+  <div class="p-info">
+    <div class="p-title">Magnolia</div>
+    <div class="p-artist">氛围感の小曲</div>
+  </div>
+  <button class="p-btn" id="pPlay" title="播放/暂停">▶</button>
+  <button class="p-btn" id="pMute" title="Mute" style="font-size:0.65rem;font-weight:700">M</button>
+  <div class="p-bar-wrap" id="pBar"><div class="p-bar-fill" id="pBarFill"></div></div>
+  <span class="p-time" id="pTime">0:00</span>
+  <div class="p-vol" id="pVol"><div class="p-vol-fill" id="pVolFill"></div></div>
+</div>
+<audio id="audio" loop preload="auto" src="magnolia.aac?v=2"></audio>
+<div style="position:fixed;bottom:80px;right:16px;z-index:300;font-size:0.5rem;color:rgba(255,255,255,0.15);pointer-events:none">v2.1</div>
+</body>
+</html>
