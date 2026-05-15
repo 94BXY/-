@@ -148,7 +148,6 @@ body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC",
     <span class="music-text"><strong>Magnolia</strong> · 氛围感</span>
   </div>
   <a href="index.html" class="back-btn">← 回到 BXY</a>
-  <a href="study.html" class="back-btn">[Study]</a>
 </div>
 
 
@@ -219,6 +218,8 @@ if(houseEl&&overlayEl){
 houseEl.addEventListener('mouseenter',function(){overlayEl.classList.add('show');if(dimEl)dimEl.classList.add('show')});
 houseEl.addEventListener('mouseleave',function(){overlayEl.classList.remove('show');if(dimEl)dimEl.classList.remove('show')});
 }
+var houseEl2=document.querySelector('.house');
+if(houseEl2){houseEl2.addEventListener('click',function(){window.location.href='study.html'})}
 window.startAll = function() {
     document.getElementById('startHint').classList.add('hidden');
     var a = document.getElementById('audio');
