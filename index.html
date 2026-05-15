@@ -552,7 +552,7 @@ audio.play().then(function(){pp.textContent="⏸"}).catch(function(){pp.textCont
 }
 rs(); ip();
 // Visitor counter
-(function(){var vc=document.getElementById("vc");if(!vc)return;var ns="bxy-site";fetch("https://api.countapi.xyz/hit/"+ns+"/visits").then(function(r){return r.json()}).then(function(d){vc.textContent=d.value.toLocaleString()}).catch(function(){vc.textContent="---"})})();
+(function(){var vc=document.getElementById("vc");if(!vc)return;fetch("https://api.counterapi.dev/v1/bxy-site/visits/up").then(function(r){return r.json()}).then(function(d){vc.textContent=d.count.toLocaleString()}).catch(function(){var key="bxy_visits";var c=parseInt(localStorage.getItem(key)||"0");c++;localStorage.setItem(key,c);vc.textContent=c.toLocaleString()})})();
 
 logs = mg(ld(LK, defLogs), defLogs); sv(LK, logs);
 projs = ld(PK, []);
