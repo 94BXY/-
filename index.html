@@ -115,6 +115,15 @@ footer .fi2{font-size:0.65rem;color:rgba(255,255,255,0.15)}
 .room-btn-glow{position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(124,58,237,0),rgba(236,72,153,0.1),rgba(6,182,212,0.1),rgba(124,58,237,0));opacity:0;transition:opacity 0.5s}
 .room-btn:hover .room-btn-glow{opacity:1;animation:btnShimmer 2s linear infinite}
 @keyframes btnShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* Timeline */
+.ll.tl{position:relative;padding-left:30px}
+.ll.tl::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--v),var(--c),rgba(255,255,255,0.04))}
+.li{position:relative}
+.li::before{content:"";position:absolute;left:-26px;top:34px;width:8px;height:8px;border-radius:50%;background:var(--v);box-shadow:0 0 10px rgba(124,58,237,0.5);transition:all 0.3s}
+.li:hover::before{transform:scale(1.8);box-shadow:0 0 20px rgba(124,58,237,0.8)}
+.pr{transform-style:preserve-3d;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.pr:hover{transform:perspective(800px) rotateY(var(--tx,0deg)) rotateX(var(--ty,0deg));box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(124,58,237,0.1)}
 </style>
 </head>
 <body>
@@ -159,7 +168,7 @@ footer .fi2{font-size:0.65rem;color:rgba(255,255,255,0.15)}
     <div class="fr"><label>内容</label><textarea id="ls" placeholder="详细记录"></textarea></div>
     <div class="fb"><button class="btn bc" id="clb">取消</button><button class="btn bs" id="slb">保存</button></div>
   </div>
-  <div class="ll rv" id="ll"></div>
+  <div class="ll rv tl" id="ll"></div>
 </section>
 
 <section id="messages">
@@ -409,8 +418,7 @@ function rp() {
       card.addEventListener('mousemove', function(e) {
         var r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-      });
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');var tx=((e.clientX-r.left)/r.width-0.5)*8;var ty=((e.clientY-r.top)/r.height-0.5)*-8;card.style.setProperty('--tx',tx.toFixed(1)+'deg');card.style.setProperty('--ty',ty.toFixed(1)+'deg');});card.addEventListener('mouseleave',function(){card.style.setProperty('--tx','0deg');card.style.setProperty('--ty','0deg')});
     })(pcs[c]);
   }
 }
