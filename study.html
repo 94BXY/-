@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>书房 · BXY</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d14;--t:#e8e6f0;--d:#6b6b6b;--warm:#d4a574;--gold:#c8a45c;--wood:#5a3a2a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t);overflow:hidden;height:100vh;-webkit-font-smoothing:antialiased}
+
+.scene{position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 40% 50%,#1a1410 0%,#0d0d14 70%)}
+
+.wall{position:absolute;inset:0;background:linear-gradient(180deg,#1a1410 0%,#221a14 50%,#1a1210 100%)}
+.wall::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,0.008) 40px,rgba(255,255,255,0.008) 41px)}
+
+.floor{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(180deg,rgba(30,20,10,0.6),rgba(20,12,6,0.9));transform:perspective(500px) rotateX(15deg);transform-origin:bottom}
+
+.bookshelf{position:absolute;left:8%;bottom:5%;width:240px;height:65%;display:flex;flex-direction:column;gap:8px;padding:20px 16px;background:linear-gradient(180deg,#3a2210,#2a1808);border-radius:4px;box-shadow:0 4px 30px rgba(0,0,0,0.5),inset 0 2px 0 rgba(255,255,255,0.03)}
+
+.shelf{flex:1;display:flex;align-items:flex-end;gap:4px;padding:4px 0;border-bottom:4px solid #2a1808;position:relative}
+.shelf:last-child{border-bottom:none}
+
+.book{width:14px;border-radius:2px 2px 0 0;transition:transform 0.2s ease;cursor:pointer}
+.book:hover{transform:translateY(-6px) scale(1.1);filter:brightness(1.3)}
+
+.desk{position:absolute;right:12%;bottom:8%;width:340px;height:20px;background:linear-gradient(180deg,#5a3a22,#3a2010);border-radius:3px;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.desk-leg-l{position:absolute;right:calc(12% + 20px);bottom:0;width:12px;height:60px;background:#3a2010;border-radius:2px}
+.desk-leg-r{position:absolute;right:12%;bottom:0;width:12px;height:60px;background:#3a2010;border-radius:2px}
+
+.lamp-base{position:absolute;right:calc(12% + 260px);bottom:calc(8% + 20px);width:30px;height:8px;background:#3a3020;border-radius:4px}
+.lamp-pole{position:absolute;right:calc(12% + 272px);bottom:calc(8% + 28px);width:4px;height:50px;background:linear-gradient(180deg,#4a4030,#3a3020);border-radius:2px}
+.lamp-shade{position:absolute;right:calc(12% + 254px);bottom:calc(8% + 78px);width:40px;height:24px;background:linear-gradient(180deg,#4a3828,#3a2818);border-radius:10px 10px 4px 4px;clip-path:polygon(20% 0%,80% 0%,100% 100%,0% 100%)}
+.lamp-glow{position:absolute;right:calc(12% + 180px);bottom:calc(8% + 20px);width:200px;height:120px;background:radial-gradient(ellipse at 50% 0%,rgba(255,200,140,0.15) 0%,rgba(255,180,100,0.06) 40%,transparent 70%);pointer-events:none}
+
+.window-frame{position:absolute;left:40%;top:15%;width:160px;height:200px;border:8px solid #3a2210;border-radius:4px;background:linear-gradient(180deg,#1a1a3e,#0a0a1e);box-shadow:inset 0 0 30px rgba(100,150,200,0.1),0 4px 20px rgba(0,0,0,0.3)}
+.window-frame::after{content:"";position:absolute;top:50%;left:8px;right:8px;height:3px;background:rgba(0,0,0,0.3)}
+.window-frame::before{content:"";position:absolute;left:50%;top:8px;bottom:8px;width:3px;background:rgba(0,0,0,0.3)}
+
+.star-lit{position:absolute;border-radius:50%;background:rgba(200,220,255,0.6);animation:tw2 var(--ds) ease-in-out infinite}
+@keyframes tw2{0%,100%{opacity:0.3}50%{opacity:1}}
+
+.dust{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,200,140,0.4),transparent);animation:float var(--df) ease-in-out infinite;animation-delay:var(--dd);pointer-events:none}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0);opacity:0}20%{opacity:0.6}50%{transform:translateY(var(--dy)) translateX(var(--dx));opacity:0.3}80%{opacity:0}100%{transform:translateY(0) translateX(0);opacity:0}}
+
+.chair{position:absolute;right:calc(12% + 100px);bottom:8%;width:80px;height:60px;background:linear-gradient(180deg,#4a3020,#3a2010);border-radius:10px 10px 0 0}
+.chair-back{position:absolute;right:calc(12% + 120px);bottom:calc(8% + 60px);width:50px;height:50px;background:linear-gradient(180deg,#4a3020,#3a2010);border-radius:6px 6px 0 0}
+
+.info{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:20;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.back-btn{padding:10px 28px;font-size:0.75rem;font-weight:600;font-family:inherit;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.4s;letter-spacing:0.04em;text-decoration:none}
+.back-btn:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3)}
+
+.player{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,20,0.92);border-top:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(20px);padding:12px 24px;display:flex;align-items:center;gap:14px}
+.player .p-cover{width:44px;height:44px;border-radius:6px;background:linear-gradient(135deg,#d4a574,#8b6914);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.player .p-info{flex:1;min-width:0}
+.player .p-title{font-size:0.8rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .p-artist{font-size:0.65rem;color:rgba(255,255,255,0.35);margin-top:2px}
+.player .p-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all 0.2s;flex-shrink:0}
+.player .p-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25)}
+.player .p-bar-wrap{flex:1;max-width:200px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;cursor:pointer;position:relative}
+.player .p-bar-fill{height:100%;background:linear-gradient(90deg,#d4a574,#c8a45c);border-radius:2px;width:0%;transition:width 0.1s linear;pointer-events:none}
+.player .p-time{font-size:0.6rem;color:rgba(255,255,255,0.3);min-width:35px;text-align:right;flex-shrink:0}
+.player .p-vol{width:60px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;cursor:pointer;flex-shrink:0}
+.player .p-vol-fill{height:100%;background:rgba(212,167,116,0.6);border-radius:2px;width:70%;pointer-events:none}
+@media(max-width:600px){.player{padding:8px 12px;gap:10px}.player .p-bar-wrap,.player .p-time{display:none}}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <div class="wall"></div>
+  <div class="floor"></div>
+  <div class="window-frame" id="winFrame"></div>
+  
+  <div class="bookshelf" id="bookshelf"></div>
+  
+  <div class="desk"></div>
+  <div class="desk-leg-l"></div>
+  <div class="desk-leg-r"></div>
+  <div class="lamp-base"></div>
+  <div class="lamp-pole"></div>
+  <div class="lamp-shade"></div>
+  <div class="lamp-glow"></div>
+  <div class="chair-back"></div>
+  <div class="chair"></div>
+</div>
+
+<div class="info">
+  <a href="room.html" class="back-btn">← 回到小屋</a>
+</div>
+
+<div class="player" id="player">
+  <div class="p-cover">📚</div>
+  <div class="p-info">
+    <div class="p-title">Infinity</div>
+    <div class="p-artist">Jaymes Young</div>
+  </div>
+  <button class="p-btn" id="pPlay">></button>
+  <button class="p-btn" id="pMute" style="font-size:0.65rem;font-weight:700">M</button>
+  <div class="p-bar-wrap" id="pBar"><div class="p-bar-fill" id="pBarFill"></div></div>
+  <span class="p-time" id="pTime">0:00</span>
+  <div class="p-vol" id="pVol"><div class="p-vol-fill" id="pVolFill"></div></div>
+</div>
+<audio id="audio" loop preload="auto" src="infinity.mp4"></audio>
+
+<script>
+(function(){
+  // Books
+  var shelf=document.getElementById('bookshelf');
+  var colors=['#8b4513','#a0522d','#6b3410','#483c32','#5c4033','#8b5a2b','#704214','#4a3728','#3d2b1f','#6b4226',
+    '#2f4f4f','#556b2f','#8b0000','#4a0000','#1a3a5c','#5c3a5c','#d4a574','#c8a45c','#708090','#191970'];
+  for(var r=0;r<4;r++){
+    var sDiv=document.createElement('div');sDiv.className='shelf';
+    for(var b=0;b<16;b++){
+      var bk=document.createElement('div');bk.className='book';
+      bk.style.cssText='height:'+(40+Math.random()*60)+'px;background:linear-gradient(180deg,'+colors[Math.floor(Math.random()*colors.length)]+','+colors[Math.floor(Math.random()*colors.length)]+')';
+      sDiv.appendChild(bk)
+    }
+    shelf.appendChild(sDiv)
+  }
+
+  // Stars in window
+  var wf=document.getElementById('winFrame');
+  for(var s=0;s<15;s++){
+    var st=document.createElement('div');st.className='star-lit';
+    st.style.cssText='left:'+(10+Math.random()*70).toFixed(0)+'%;top:'+(5+Math.random()*80).toFixed(0)+'%;width:'+(Math.random()*2+1)+'px;height:'+(Math.random()*2+1)+'px;--ds:'+(Math.random()*2+2).toFixed(1)+'s';
+    wf.appendChild(st)
+  }
+
+  // Dust particles
+  for(var d=0;d<25;d++){
+    var du=document.createElement('div');du.className='dust';
+    du.style.cssText='width:'+(Math.random()*3+1.5)+'px;height:'+(Math.random()*3+1.5)+'px;left:'+(20+Math.random()*60)+'%;top:'+(30+Math.random()*50)+'%;--df:'+(Math.random()*6+4)+'s;--dd:'+(Math.random()*5)+'s;--dx:'+(Math.random()*60-30)+'px;--dy:'+(Math.random()*-40-10)+'px';
+    document.body.appendChild(du)
+  }
+
+  // Player
+  var audio=document.getElementById("audio"),pl=document.getElementById("player"),
+  pp=document.getElementById("pPlay"),pm=document.getElementById("pMute"),
+  pb=document.getElementById("pBar"),pbf=document.getElementById("pBarFill"),
+  pt=document.getElementById("pTime"),pv=document.getElementById("pVol"),pvf=document.getElementById("pVolFill");
+  
+  if(audio){audio.volume=0.5;
+  pp.addEventListener("click",function(){if(audio.src&&audio.src!==window.location.href){if(audio.paused){audio.play()}else{audio.pause()}}});
+  audio.addEventListener("play",function(){pp.innerHTML="||"});
+  audio.addEventListener("pause",function(){pp.innerHTML=">"});
+  if(pm){pm.addEventListener("click",function(){audio.muted=!audio.muted;pm.style.opacity=audio.muted?"0.3":"1"})};
+  audio.addEventListener("timeupdate",function(){var p=audio.duration?(audio.currentTime/audio.duration*100):0;pbf.style.width=p+"%";var m=Math.floor(audio.currentTime/60),s=Math.floor(audio.currentTime%60);pt.textContent=m+":"+(s<10?"0":"")+s});
+  pb.addEventListener("click",function(e){if(!audio.src)return;var r=pb.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.currentTime=pct*audio.duration});
+  pv.addEventListener("click",function(e){var r=pv.getBoundingClientRect(),pct=(e.clientX-r.left)/r.width;audio.volume=Math.max(0,Math.min(1,pct));pvf.style.width=(pct*100)+"%"});
+  audio.volume=0.5;pvf.style.width="50%";
+  }
+
+  // Drag & drop audio
+  document.addEventListener('dragover',function(e){e.preventDefault()});
+  document.addEventListener('drop',function(e){e.preventDefault();
+    var file=e.dataTransfer.files[0];
+    if(file&&file.type.startsWith('audio/')){
+      var url=URL.createObjectURL(file);
+      audio.src=url;
+      audio.play();
+      document.querySelector('.p-title').textContent=file.name;
+      document.querySelector('.p-artist').textContent='拖入播放';
+    }
+  });
+})();
+</script>
+</body>
+</html>
